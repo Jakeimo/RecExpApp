@@ -26,18 +26,7 @@ public class MainActivity extends ActionBarActivity {
         TextView changingText = (TextView) findViewById(R.id.textView2);
         text = changingText;
 
-        TextView correctText = (TextView) findViewById(R.id.textView3);
-        correctText.setText("0");
-
-
         changeText(changingText);
-    }
-
-    public void incrementCorrect(){
-        TextView correctText = (TextView) findViewById(R.id.textView3);
-        int current = Integer.parseInt(correctText.getText().toString());
-        current++;
-        correctText.setText(Integer.toString(current));
     }
 
     public void changeText(TextView text) {
@@ -60,6 +49,7 @@ public class MainActivity extends ActionBarActivity {
                 break;
         }
     }
+
     public void onClick(View view){
 
         int id = view.getId();
@@ -69,7 +59,6 @@ public class MainActivity extends ActionBarActivity {
             Toast.makeText(this, "Correct! Well done.",
                     Toast.LENGTH_SHORT).show();
             changeText(text);
-            incrementCorrect();
         } else {
             Toast.makeText(this, "Incorrect. Bad luck.",
                     Toast.LENGTH_SHORT).show();
