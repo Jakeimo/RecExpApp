@@ -3,10 +3,7 @@ package com.example.jakespicer.recexpapp;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,28 +23,39 @@ public class MainActivity extends ActionBarActivity {
         TextView changingText = (TextView) findViewById(R.id.textView2);
         text = changingText;
 
-        changeText(changingText);
+       setTitleText(changingText);
     }
 
-    public void changeText(TextView text) {
+    public void setTitleText(TextView text) {
+       String result = getNewResult();
+       text.setText(result);
+       Log.d("setTitleText() = ", result);
+    }
+
+
+    public String getNewResult(){
+        String stringResult = "Error";
         Random rnd = new Random();
 
         rnd.setSeed(System.currentTimeMillis());
         int result = rnd.nextInt(3);
 
-        currentAnswer = result;
-
         switch (result) {
             case 0:
-                text.setText("Apple");
+                stringResult = "Apple";
+                currentAnswer = 0;
                 break;
             case 1:
-                text.setText("Banana");
+                stringResult = "Banana";
+                currentAnswer = 1;
                 break;
             case 2:
-                text.setText("Carrot");
+                stringResult = "Carrot";
+                currentAnswer = 2;
                 break;
         }
+
+        return stringResult;
     }
 
     public void onClick(View view){
@@ -58,10 +66,11 @@ public class MainActivity extends ActionBarActivity {
         if (result == currentAnswer){
             Toast.makeText(this, "Correct! Well done.",
                     Toast.LENGTH_SHORT).show();
-            changeText(text);
+            setTitleText(text);
         } else {
             Toast.makeText(this, "Incorrect. Bad luck.",
                     Toast.LENGTH_SHORT).show();
         }
     }
+
 }
