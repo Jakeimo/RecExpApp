@@ -1,5 +1,6 @@
 package com.example.jakespicer.recexpapp;
 
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -77,7 +78,16 @@ public class MainActivity extends ActionBarActivity{
             view.startAnimation(expand);
             Toast.makeText(this, "Correct! Well done.",
                     Toast.LENGTH_SHORT).show();
-            setTitleText(text);
+            //Handler invoked to delay refresh of prompt for 1.5 seconds
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //Refresh prompt after 1500ms
+                    setTitleText(text);
+                }
+            }, 1500);
+
         } else {
             Animation shake = AnimationUtils.loadAnimation(this, R.anim.incorrect_shake);
             view.startAnimation(shake);
