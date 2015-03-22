@@ -10,7 +10,7 @@ import android.widget.Toast;
 import java.util.Random;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity{
 
     int currentAnswer = 0;
     TextView text;
@@ -32,6 +32,13 @@ public class MainActivity extends ActionBarActivity {
        Log.d("setTitleText() = ", result);
     }
 
+    public int getCurrentAnswer() {
+        return currentAnswer;
+    }
+
+    public void setCurrentAnswer(int currentAnswer) {
+        this.currentAnswer = currentAnswer;
+    }
 
     public String getNewResult(){
         String stringResult = "Error";
@@ -43,15 +50,15 @@ public class MainActivity extends ActionBarActivity {
         switch (result) {
             case 0:
                 stringResult = "Apple";
-                currentAnswer = 0;
+                setCurrentAnswer(0);
                 break;
             case 1:
                 stringResult = "Banana";
-                currentAnswer = 1;
+                setCurrentAnswer(1);
                 break;
             case 2:
                 stringResult = "Carrot";
-                currentAnswer = 2;
+                setCurrentAnswer(2);
                 break;
         }
 
@@ -63,7 +70,7 @@ public class MainActivity extends ActionBarActivity {
         int id = view.getId();
         int result = Integer.parseInt(getResources().getResourceEntryName(id).substring(5));
 
-        if (result == currentAnswer){
+        if (result == getCurrentAnswer()){
             Toast.makeText(this, "Correct! Well done.",
                     Toast.LENGTH_SHORT).show();
             setTitleText(text);
